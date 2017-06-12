@@ -1,5 +1,6 @@
 SHELL=/bin/bash
 export PATH := ./bin:./venv/bin:$(PATH)
+export VIRTUALENV_PYTHON=python3.6
 
 ifndef ELASTIC_VERSION
 ELASTIC_VERSION := $(shell cat version.txt)
@@ -52,7 +53,7 @@ push: test
 
 # The tests are written in Python. Make a virtualenv to handle the dependencies.
 venv: requirements.txt
-	test -d venv || virtualenv --python=python3.5 venv
+	test -d venv || virtualenv venv
 	pip install -r requirements.txt
 	touch venv
 
